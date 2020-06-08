@@ -1,2 +1,2 @@
-### Suckless software repo
-suckless programs go *here*
+## Suckless software repo
+programs go *here*
