@@ -1,29 +1,32 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;    		/* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=8", "DejaVuSansMono Nerd Font Mono:size=11" };
+static const unsigned int borderpx  = 1; /* border pixel of windows */
+static const unsigned int snap      = 32; /* snap pixel */
+static const int showbar           	= 1;
+static const int topbar             = 1;
+static const char *fonts[]          = { "monospace:size=9", "DejaVuSansMono Nerd Font Mono:size=10" };
 static const char dmenufont[]       = "monospace:size=11";
-static const char col_gray1[]       = "#151515";
-static const char col_gray2[]       = "#282828";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_bg[]       		= "#5f6a6a";
-static const char col_sel[]       	= "#a89984";
-static const char col_text[]       	= "#282828";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray2, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_gray2, "#cc241d" },
 
-	[SchemeStatus]   = { col_gray2, col_bg,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-	[SchemeTagsSel]  = { col_gray2, col_sel, "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
-	[SchemeTagsNorm] = { col_gray2, col_bg,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-	[SchemeInfoSel]  = { col_gray2, col_bg,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-	[SchemeInfoNorm] = { col_gray2, col_bg,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+/* colors */
+static char normbgcolor[]     = "#1c1c1c";
+static char normbordercolor[] = "#444444";
+static char normfgcolor[]     = "#bbbbbb";
+static char selfgcolor[]      = "#f7f7f7";
+static char selbordercolor[]  = "#9d0006";
+static char selbgcolor[]      = "#5f6a6a";
+static char textcolor[] 			= "#282828";
+static const char *colors[][3] = {
+
+	/*               					fg         bg         border   */
+	[SchemeNorm] 			= { normfgcolor, normbgcolor, normbordercolor },
+	[SchemeSel]  			= { "#282828", selbgcolor, selbordercolor },
+
+	[SchemeStatus]   	= { textcolor, "#5f6a6a", "#000000" }, // Statusbar right
+	[SchemeTagsSel]  	= { textcolor, "#a89984", "#000000" }, // Tagbar left selected
+	[SchemeTagsNorm] 	= { textcolor, "#5f6a6a", "#000000" }, // Tagbar left unselected
+	[SchemeInfoSel]  	= { textcolor, "#5f6a6a", "#000000" }, // infobar middle selected
+	[SchemeInfoNorm] 	= { textcolor, "#5f6a6a", "#000000" }, // infobar middle unselected
 };
 
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -33,10 +36,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "firefox",  NULL,       NULL,       2,       			0,           -1 },
-	{ "chromium-browser",  		NULL,       NULL,       	2,       			0,           -1 },
+	/* class      	instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",     	NULL,       NULL,       0,            1,           -1 },
+	{ "firefox",  	NULL,       NULL,       2,       			0,           -1 },
+	{ "chromium",  	NULL,       NULL,       2,       			0,           -1 },
 };
 
 /* layout(s) */
@@ -45,10 +48,10 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
-	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	/* symbol     		arrange function */
+	{ "[tile]", 			tile },    /* first entry is default */
+	{ "[float]", 			NULL },    /* no layout function means floating behavior */
+	{ "[monocle]", 		monocle },
 };
 
 /* key definitions */
@@ -64,9 +67,9 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", "#a89984", "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", selfgcolor, "-sb", "#a89984", "-sf", normbgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *web[] = { "chromium-browser", NULL };
+static const char *web[] = { "firefox", NULL };
 
 #include "movestack.c"
 #include <X11/XF86keysym.h>
