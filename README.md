@@ -1,9 +1,9 @@
 ## Suckless software
-<img src="https://st.suckless.org/screenshots/frign-2016.png" align="center" width="620px" height="200px">
+repository containing my configured [suckless][suckless] programs [dynamic window manager][dwm] & [simple terminal][st].
 
----
+--- 
 
-This is a repository containing my configured [suckless][suckless] programs [dynamic window manager][dwm] & [simple terminal][st].
+![suckless!](https://st.suckless.org/screenshots/frign-2016.png)
 
 [suckless]:https://suckless.org/
 [dwm]:https://dwm.suckless.org/
